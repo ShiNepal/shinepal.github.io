@@ -65,3 +65,10 @@
 
 程式在 `apps-script/email.gs`，資料庫觸發器在 `supabase/mail.sql`。信件由部署程式的 Gmail 帳號寄出，每天上限約 100 封。
 
+## 組合優惠
+`supabase/bundles.sql` 建立組合優惠，執行一次即可（需先執行過 `shop.sql`）。
+- 在 Table Editor 的 `bundles` 表管理：`price` 是組合價，`active` 改成 false 可以暫停某個組合
+- `slots` 是組合內容，每一格是一個商品代號清單，例如 `[["si_stat0:0"],["si_stat2:0"]]`；同一格放多個代號＝任選其一。商品代號可以在 `products` 表查
+- 購物車湊成組合就自動折價，一件商品只算一個組合，系統自動挑最省錢的配法；折扣金額由資料庫計算
+- 滿額回饋與滿額免運都用折扣後的金額計算
+

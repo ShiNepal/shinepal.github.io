@@ -444,6 +444,36 @@ h3{font-size:20px;font-weight:700;line-height:1.4}
 .olpay label{display:grid;gap:4px;font-weight:700;font-size:14px}
 .olpay input{font:inherit;padding:9px 11px;border-radius:10px;border:2px solid var(--line);background:var(--wall);color:var(--ink);max-width:180px;letter-spacing:.2em}
 .olpay .evbtn{justify-self:start;margin-top:0;cursor:pointer}
+/* ===== 組合優惠 ===== */
+.bdl{margin:22px 0 26px}
+.bdlhead h3{margin:0 0 4px;font-size:20px;font-weight:900}
+.bdlhead p{margin:0 0 12px;color:var(--ink-2);font-size:14px}
+.bdlgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:12px}
+.bdlcard{display:flex;flex-direction:column;gap:6px;padding:14px;border-radius:16px;background:var(--paper);border:2px solid var(--line);box-shadow:0 3px 0 var(--line);transition:border-color .2s,transform .2s}
+.bdlcard.on{border-color:#2F9E44;box-shadow:0 3px 0 #2F9E44}
+.bdltop{display:flex;align-items:center;gap:8px}
+.bdlemo{font-size:24px}
+.bdltop h4{margin:0;font-size:16px;font-weight:900;flex:1}
+.bdlok{font-size:12px;font-weight:900;padding:2px 8px;border-radius:999px;background:#2F9E44;color:#fff;white-space:nowrap}
+.bdlcard ul{margin:0;padding-left:1.1em;font-size:13px;line-height:1.55;color:var(--ink)}
+.bdlprice{margin:2px 0 0;font-size:14px}
+.bdlprice s{color:var(--ink-2)}
+.bdlprice b{color:var(--red);font-size:18px;font-weight:900}
+.bdlsave{display:inline-block;margin-left:4px;padding:1px 8px;border-radius:999px;background:var(--yellow);color:#2B2420;font-size:12px;font-weight:900}
+.bdlhint{margin:0;font-size:12px;font-weight:700;color:#B3261E}
+.bdlhint.off{color:var(--ink-2)}
+.bdladd{margin-top:auto;font:inherit;font-weight:900;font-size:14px;padding:8px 12px;border-radius:999px;border:2px solid var(--ink);background:none;color:var(--ink);cursor:pointer}
+.bdladd:hover{background:var(--yellow);color:#2B2420;border-color:#2B2420}
+.bdladd:disabled{opacity:.45;cursor:not-allowed;background:none}
+.cdsum .tot s{display:block;font-size:12px;color:var(--ink-2)}
+.cdsave{color:#2F9E44;font-weight:900}
+.cdbund{margin:10px 0;padding:10px 12px;border-radius:12px;background:rgba(47,158,68,.12);border:2px dashed #2F9E44;font-size:13px}
+.cdbund b{color:#2F7A3A}
+.cdbund ul{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:2px}
+.cdbund li{display:flex;justify-content:space-between;gap:8px}
+.cototal .codisc{color:#2F7A3A;font-weight:900}
+.cototal .coapp{color:var(--ink-2);font-size:12px}
+.cototal dt.coapp{padding-left:1em}
 .bdsky{position:relative;isolation:isolate;z-index:0;max-width:900px;height:360px;margin-bottom:22px;border-radius:22px;overflow:hidden;
   background:radial-gradient(120% 90% at 20% 10%,#FFE9A8 0,transparent 55%),radial-gradient(90% 80% at 90% 90%,#FFC9BC 0,transparent 60%),linear-gradient(160deg,#FFF3D6,#F6DCC4);border:2px solid var(--line)}
 .bdskyt{position:absolute;left:14px;top:10px;z-index:30;font-size:13px;font-weight:900;padding:3px 10px;border-radius:999px;background:rgba(255,249,236,.85);color:#2B2420}
@@ -1235,6 +1265,7 @@ h1.fancy .ch:hover{animation:chJump .45s ease}
           <p class="shopnote" data-i18n="pdBuyNote">線上購買尚在籌備中，目前僅供瀏覽。</p>
         </div>
       </article>
+      <section class="bdl" id="bundleList" aria-labelledby="bdlH" hidden></section>
       <div class="shop"><div class="scat"><h3 data-i18n="sc_apparel">服飾</h3><ul><li class="sitem"><span class="sn" data-i18n="si_apparel0">享尼排汗短袖T恤</span><span class="sp"><span class="sv"><b>NT$ 400</b></span></span></li><li class="sitem"><span class="sn" data-i18n="si_apparel1">享尼棉質短袖T恤</span><span class="sp"><span class="sv"><b>NT$ 400</b></span></span></li></ul></div><div class="scat"><h3 data-i18n="sc_bags">包袋</h3><ul><li class="sitem"><span class="sn" data-i18n="si_bags0">帆布袋</span><span class="sp"><span class="sv"><em data-i18n="sv_bags0_0">薄</em><b>NT$ 100</b></span><span class="sv"><em data-i18n="sv_bags0_1">厚</em><b>NT$ 300</b></span></span></li><li class="sitem"><span class="sn" data-i18n="si_bags1">側背包</span><span class="sp"><span class="sv"><b>NT$ 600</b></span></span></li><li class="sitem"><span class="sn" data-i18n="si_bags2">方形包</span><span class="sp"><span class="sv"><em data-i18n="sv_bags2_0">小</em><b>NT$ 250</b></span><span class="sv"><em data-i18n="sv_bags2_1">大</em><b>NT$ 350</b></span></span></li><li class="sitem"><span class="sn" data-i18n="si_bags3">筆袋</span><span class="sp"><span class="sv"><b>NT$ 300</b></span></span></li><li class="sitem"><span class="sn" data-i18n="si_bags4">化妝包</span><span class="sp"><span class="sv"><b>NT$ 400</b></span></span></li><li class="sitem"><span class="sn" data-i18n="si_bags5">旅行化妝包</span><span class="sp"><span class="sv"><b>NT$ 350</b></span></span></li><li class="sitem"><span class="sn" data-i18n="si_bags6">零錢包</span><span class="sp"><span class="sv"><b>NT$ 150</b></span></span></li></ul></div><div class="scat"><h3 data-i18n="sc_craft">手作與擺飾</h3><ul><li class="sitem"><span class="sn" data-i18n="si_craft0">羊毛氈</span><span class="sp"><span class="sv"><em data-i18n="sv_craft0_0">小</em><b>NT$ 150</b></span><span class="sv"><em data-i18n="sv_craft0_1">中</em><b>NT$ 250</b></span></span></li><li class="sitem"><span class="sn" data-i18n="si_craft1">頌缽</span><span class="sp"><span class="sv"><em data-i18n="sv_craft1_0">小</em><b>NT$ 500</b></span><span class="sv"><em data-i18n="sv_craft1_1">大</em><b>NT$ 750</b></span></span></li><li class="sitem"><span class="sn" data-i18n="si_craft2">刀</span><span class="sp"><span class="sv"><em data-i18n="sv_craft2_0">小</em><b>NT$ 400</b></span><span class="sv"><em data-i18n="sv_craft2_1">大</em><b>NT$ 550</b></span></span></li></ul></div><div class="scat"><h3 data-i18n="sc_acc">配件</h3><ul><li class="sitem"><span class="sn" data-i18n="si_acc0">絲巾</span><span class="sp"><span class="sv"><b>NT$ 200</b></span></span></li><li class="sitem"><span class="sn" data-i18n="si_acc1">圍巾</span><span class="sp"><span class="sv"><b>NT$ 750</b></span></span></li><li class="sitem"><span class="sn" data-i18n="si_acc2">眼罩</span><span class="sp"><span class="sv"><b>NT$ 100</b></span></span></li></ul></div><div class="scat"><h3 data-i18n="sc_stat">文具與小物</h3><ul><li class="sitem"><span class="sn" data-i18n="si_stat0">明信片</span><span class="sp"><span class="sv"><b>NT$ 80</b></span></span></li><li class="sitem"><span class="sn" data-i18n="si_stat1">便利貼</span><span class="sp"><span class="sv"><b>NT$ 50</b></span></span></li><li class="sitem"><span class="sn" data-i18n="si_stat2">資料夾</span><span class="sp"><span class="sv"><b>NT$ 80</b></span></span></li><li class="sitem"><span class="sn" data-i18n="si_stat3">風景圖</span><span class="sp"><span class="sv"><b>NT$ 150</b></span></span></li><li class="sitem"><span class="sn" data-i18n="si_stat4">護唇膏</span><span class="sp"><span class="sv"><b>NT$ 80</b></span></span></li></ul></div></div>
       <p class="shopnote" data-i18n="supNote">價格單位為新台幣（NT$）。線上購買與寄送功能尚在籌備中，目前僅供瀏覽。</p>
       </div>
@@ -2255,10 +2286,11 @@ h1.fancy .ch:hover{animation:chJump .45s ease}
   var W=360,H=300,R=20,CAP=24,G=80,REST=.5;
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   function en(){return document.documentElement.lang==='en';}
-  var D={zh:{cart:'購物車',open:'展開',close:'關閉',empty:'購物車還是空的，點一下義賣商品的小圖示就會有球掉進來喔！',cnt:'件數',tot:'金額',pcs:'件',hide:'隱藏購物車',remove:'移除',clear:'清空',checkout:'前往結帳',note:'僅寄送台灣本島；下單後以銀行轉帳付款，款項確認後出貨。',offer:'滿額回饋',none:'再 NT$ {n} 就達到第一個回饋級距（NT$ {t}）。',reach:'已達 NT$ {t} 級距：',next:'再 NT$ {n} 可升到 NT$ {t} 級距。',top:'已是最高級距！',draft:'（草案，待確認）',ok:'（已確認）',offnote:'回饋以商品金額（不含運費）計算，結帳時可以選擇回饋品。',plus:'增加',minus:'減少',pick:'選擇規格',more:'還有 {n} 件'},
-    en:{cart:'Cart',open:'Expand',close:'Close',empty:'Your cart is empty. Tap an item icon in the shop and a ball will drop in!',cnt:'Items',tot:'Total',pcs:'pcs',hide:'Hide cart',remove:'Remove',clear:'Clear',checkout:'Check out',note:'Shipping within Taiwan main island only. Pay by bank transfer after ordering; we ship once payment is confirmed.',offer:'Purchase perks',none:'NT$ {n} more to reach the first reward tier (NT$ {t}).',reach:'Reached the NT$ {t} tier: ',next:'NT$ {n} more for the NT$ {t} tier.',top:'You are at the top tier!',draft:'(draft, to be confirmed)',ok:'(confirmed)',offnote:'Perks are based on the item total (excluding shipping). You can choose your gift at checkout.',plus:'Add',minus:'Remove',pick:'Choose option',more:'{n} more'}};
+  var D={zh:{cart:'購物車',open:'展開',close:'關閉',empty:'購物車還是空的，點一下義賣商品的小圖示就會有球掉進來喔！',cnt:'件數',tot:'金額',pcs:'件',hide:'隱藏購物車',remove:'移除',clear:'清空',checkout:'前往結帳',note:'僅寄送台灣本島；下單後以銀行轉帳付款，款項確認後出貨。',offer:'滿額回饋',bund:'組合優惠',none:'再 NT$ {n} 就達到第一個回饋級距（NT$ {t}）。',reach:'已達 NT$ {t} 級距：',next:'再 NT$ {n} 可升到 NT$ {t} 級距。',top:'已是最高級距！',draft:'（草案，待確認）',ok:'（已確認）',offnote:'回饋以折扣後的商品金額（不含運費）計算，結帳時可以選擇回饋品。',plus:'增加',minus:'減少',pick:'選擇規格',more:'還有 {n} 件'},
+    en:{cart:'Cart',open:'Expand',close:'Close',empty:'Your cart is empty. Tap an item icon in the shop and a ball will drop in!',cnt:'Items',tot:'Total',pcs:'pcs',hide:'Hide cart',remove:'Remove',clear:'Clear',checkout:'Check out',note:'Shipping within Taiwan main island only. Pay by bank transfer after ordering; we ship once payment is confirmed.',offer:'Purchase perks',bund:'Bundle deals',none:'NT$ {n} more to reach the first reward tier (NT$ {t}).',reach:'Reached the NT$ {t} tier: ',next:'NT$ {n} more for the NT$ {t} tier.',top:'You are at the top tier!',draft:'(draft, to be confirmed)',ok:'(confirmed)',offnote:'Perks are based on the item total after discounts (excluding shipping). You can choose your gift at checkout.',plus:'Add',minus:'Remove',pick:'Choose option',more:'{n} more'}};
   function T(k,o){var s=D[en()?'en':'zh'][k]||k;if(o)for(var x in o)s=s.replace('{'+x+'}',o[x]);return s;}
   function money(n){return 'NT$ '+n.toLocaleString('en-US');}
+  function esc(x){return String(x==null?'':x).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 
   // ---- catalog from DOM
   var cat=[],byKey={};
@@ -2282,7 +2314,8 @@ h1.fancy .ch:hover{animation:chJump .45s ease}
   try{var sv=JSON.parse(localStorage.getItem('shinepal_cart')||'[]');if(Array.isArray(sv))sv.forEach(function(x){if(byKey[x.key]&&x.qty>0&&byKey[x.key].vs[x.v])cart.push({key:x.key,v:x.v,qty:Math.min(x.qty,99)});});}catch(e){}
   function save(){try{localStorage.setItem('shinepal_cart',JSON.stringify(cart));}catch(e){}}
   function line(key,v){for(var i=0;i<cart.length;i++)if(cart[i].key===key&&cart[i].v===v)return cart[i];}
-  function totals(){var n=0,t=0;cart.forEach(function(l){n+=l.qty;t+=l.qty*byKey[l.key].vs[l.v].price;});return {n:n,t:t};}
+  function totals(){var n=0,t=0,q={};cart.forEach(function(l){n+=l.qty;t+=l.qty*byKey[l.key].vs[l.v].price;q[l.key+':'+l.v]=(q[l.key+':'+l.v]||0)+l.qty;});
+    var bb=window.ShopBundles?ShopBundles.best(q):{save:0,apps:[]},d=Math.min(bb.save,t);return {n:n,raw:t,disc:d,apps:bb.apps,t:t-d};}
   function vlabel(it,v){var e=it.vs[v].lab;return e?e.textContent:'';}
 
   // ---- tiers from donation table
@@ -2370,7 +2403,7 @@ h1.fancy .ch:hover{animation:chJump .45s ease}
   function render(){
     var tt=totals(),ti=tiers();
     badge.hidden=!tt.n;badge.textContent=tt.n>99?'99+':tt.n;btn.setAttribute('aria-label',T('cart')+(tt.n?' ('+tt.n+')':''));
-    mini.innerHTML=tt.n?tt.n+' '+T('pcs')+' · <b>'+money(tt.t)+'</b>':T('cart');
+    mini.innerHTML=tt.n?tt.n+' '+T('pcs')+' · <b>'+money(tt.t)+'</b>'+(tt.disc?' <span class="cdsave">−'+money(tt.disc)+'</span>':''):T('cart');
     document.getElementById('cdOpen').textContent=T('open');document.getElementById('cdClose').textContent='✕ '+T('close');
     dock.setAttribute('aria-label',T('cart'));
     var reached=null,nxt=null;ti.forEach(function(x){if(tt.t>=x.amt)reached=x;});for(var i=0;i<ti.length;i++){if(tt.t<ti[i].amt){nxt=ti[i];break;}}
@@ -2380,7 +2413,8 @@ h1.fancy .ch:hover{animation:chJump .45s ease}
       of+='<div class="cdbar"><i style="width:'+pc+'%"></i></div><p>'+(reached?T('next',{n:(nxt.amt-tt.t).toLocaleString('en-US'),t:nxt.amt.toLocaleString('en-US')}):T('none',{n:(nxt.amt-tt.t).toLocaleString('en-US'),t:nxt.amt.toLocaleString('en-US')}))+'</p>';}
     else if(reached)of+='<p>'+T('top')+'</p>';
     of+='<p style="color:var(--ink-2);font-size:12px">'+T('offnote')+'</p></div>';
-    var h='<h2>🛒 '+T('cart')+'</h2><div class="cdsum"><div><small>'+T('cnt')+'</small><strong>'+tt.n+'</strong></div><div class="tot"><small>'+T('tot')+'</small><strong>'+money(tt.t)+'</strong></div></div>';
+    var h='<h2>🛒 '+T('cart')+'</h2><div class="cdsum"><div><small>'+T('cnt')+'</small><strong>'+tt.n+'</strong></div><div class="tot"><small>'+T('tot')+'</small><strong>'+money(tt.t)+'</strong>'+(tt.disc?'<s>'+money(tt.raw)+'</s>':'')+'</div></div>';
+    if(tt.disc){h+='<div class="cdbund"><b>🏷️ '+T('bund')+' −'+money(tt.disc)+'</b><ul>';tt.apps.forEach(function(a){h+='<li>'+esc(ShopBundles.label(a.id))+(a.times>1?' ×'+a.times:'')+'<span>−'+money(a.save)+'</span></li>';});h+='</ul></div>';}
     if(!cart.length)h+='<p class="cdempty">'+T('empty')+'</p>';
     else{h+='<ul class="cdlines">';cart.forEach(function(l,i){var it=byKey[l.key],vl=vlabel(it,l.v);
       h+='<li><span class="nm">'+(it.emo||'👕')+' '+it.nameEl.textContent+(vl?'（'+vl+'）':'')+'</span><button data-a="m" data-i="'+i+'" aria-label="'+T('minus')+'">−</button><span class="q">'+l.qty+'</span><button data-a="p" data-i="'+i+'" aria-label="'+T('plus')+'">+</button><button class="rm" data-a="r" data-i="'+i+'" aria-label="'+T('remove')+' '+it.nameEl.textContent+'">✕ '+T('remove')+'</button><span class="pr">'+money(l.qty*it.vs[l.v].price)+'</span></li>';});h+='</ul>';}
@@ -2388,6 +2422,7 @@ h1.fancy .ch:hover{animation:chJump .45s ease}
     board.innerHTML=h;
     dock.hidden=!dock.classList.contains('full')&&(!tt.n||dismissed);
     document.getElementById('cdHide').setAttribute('aria-label',T('hide'));
+    if(window.ShopBundles)ShopBundles.sync();
   }
   function sfx(n,o){if(window.SFX)SFX.play(n,o);}
   function tierIx(t){var n=-1;tiers().forEach(function(x,i){if(t>=x.amt)n=i;});return n;}
@@ -2800,21 +2835,86 @@ function openFull(){sfx('open');dock.classList.add('full');dock.hidden=false;doc
   }
   var pb=document.querySelector('#p-dryfit .pdbuy');
   if(pb)pb.addEventListener('click',function(){if(!pb.disabled&&window.ShopCart){ShopCart.add('si_apparel0',0);toast(T('已加入購物車','Added to cart'));}});
+
+  /* ---------- bundle deals ---------- */
+  var BUNDLES=[];
+  function bestFrom(q,i){
+    if(i>=BUNDLES.length)return {save:0,apps:[]};
+    var b=BUNDLES[i],best=bestFrom(q,i+1),q2=Object.assign({},q),k=0,tot=0;
+    while(k<50){
+      var worth=0,ok=true;
+      for(var si=0;si<b.slots.length;si++){var pick=null;
+        b.slots[si].forEach(function(a){if((q2[a]||0)>0&&(pick===null||price(a)>price(pick)))pick=a;});
+        if(pick===null){ok=false;break;}q2[pick]--;worth+=price(pick);}
+      if(!ok||worth<=b.price)break;
+      k++;tot+=worth-b.price;var rest=bestFrom(q2,i+1);
+      if(tot+rest.save>best.save)best={save:tot+rest.save,apps:[{id:b.id,times:k,save:tot}].concat(rest.apps)};
+    }
+    return best;
+  }
+  function price(sku){var p=P[sku];return p?p.price:0;}
+  function bundleWorth(b){return b.slots.reduce(function(t,sl){return t+Math.max.apply(null,sl.map(price));},0);}
+  function skuName(sku){var p=P[sku];if(!p)return sku;if(!L())return p.name;var m=/^(si_[a-z]+\d+):(\d+)$/.exec(sku),el=m&&document.querySelector('#panShop .sn [data-i18n="'+m[1]+'"]');
+    if(!el)return p.name;var vs=el.closest('.sitem').querySelectorAll('.sv em');return el.textContent+(vs.length>1&&vs[+m[2]]?' ('+vs[+m[2]].textContent+')':'');}
+  function group(sls){var out=[];sls.forEach(function(sl){var n=slotName(sl),g=out.filter(function(x){return x.n===n;})[0];if(g)g.c++;else out.push({n:n,c:1});});return out;}
+  function slotName(sl){return sl.map(skuName).join(T('／',' / '));}
+  window.ShopBundles={
+    best:function(q){if(!ready||!BUNDLES.length)return {save:0,apps:[]};var r=bestFrom(q||{},0);return r;},
+    label:function(id){var b=BUNDLES.filter(function(x){return x.id===id;})[0];return b?b.emoji+' '+(L()?b.name_en:b.name):id;},
+    sync:function(){renderBundles();}
+  };
+  function cartQty(){var q={};if(window.ShopCart)ShopCart.lines().forEach(function(l){q[l.sku]=(q[l.sku]||0)+l.qty;});return q;}
+  function renderBundles(){
+    var box=document.getElementById('bundleList');if(!box)return;
+    if(!ready||!BUNDLES.length){box.hidden=true;return;}
+    var q=cartQty(),best=ShopBundles.best(q),used={};best.apps.forEach(function(a){used[a.id]=a.times;});
+    var h='<div class="bdlhead"><h3 id="bdlH">🏷️ '+T('組合優惠','Bundle deals')+'</h3><p>'+T('購物車湊成組合就自動折價，一件商品只算一個組合，系統會幫你挑最省的配法。','Discounts apply automatically when your cart completes a set. Each item counts toward one set, and we pick the best combination for you.')+'</p></div><div class="bdlgrid">';
+    BUNDLES.forEach(function(b){
+      var worth=bundleWorth(b),save=worth-b.price,times=used[b.id]||0;
+      /* how many slots are still missing for one (more) set, using items not already used by applied sets */
+      var left=Object.assign({},q);best.apps.forEach(function(a){var bb=BUNDLES.filter(function(x){return x.id===a.id;})[0];for(var t=0;t<a.times;t++)bb.slots.forEach(function(sl){var pick=null;sl.forEach(function(x){if((left[x]||0)>0&&(pick===null||price(x)>price(pick)))pick=x;});if(pick)left[pick]--;});});
+      var miss=[];b.slots.forEach(function(sl){var hit=null;sl.forEach(function(x){if((left[x]||0)>0&&hit===null)hit=x;});if(hit)left[hit]--;else miss.push(sl);});
+      var out=b.slots.some(function(sl){return sl.every(function(x){var p=P[x];return !p||!p.active||p.stock===0;});});
+      var st=times?'<span class="bdlok">✓ '+T('已湊成','Applied')+(times>1?' ×'+times:'')+'</span>':'';
+      var hint='';
+      if(out)hint='<p class="bdlhint off">'+T('組合內有商品已售完','An item in this set is sold out')+'</p>';
+      else if(miss.length&&miss.length<b.slots.length)hint='<p class="bdlhint">'+T('再加 ','Add ')+group(miss).map(function(g){return esc(g.n)+(g.c>1?' ×'+g.c:'');}).join(T('、',', '))+T(' 就能省 ',' to save ')+money(save)+'</p>';
+      h+='<article class="bdlcard'+(times?' on':'')+'"><div class="bdltop"><span class="bdlemo" aria-hidden="true">'+esc(b.emoji)+'</span><h4>'+esc(L()?b.name_en:b.name)+'</h4>'+st+'</div>'+
+        '<ul>'+group(b.slots).map(function(g){return '<li>'+esc(g.n)+(g.c>1?' ×'+g.c:'')+'</li>';}).join('')+'</ul>'+
+        '<p class="bdlprice"><s>'+money(worth)+'</s> <b>'+money(b.price)+'</b> <span class="bdlsave">'+T('省 ','Save ')+money(save)+'</span></p>'+hint+
+        '<button type="button" class="bdladd" data-b="'+esc(b.id)+'"'+(out?' disabled':'')+'>'+(times?T('再加一組','Add another set'):miss.length<b.slots.length?T('補齊這組','Complete this set'):T('一鍵加入購物車','Add set to cart'))+'</button></article>';
+    });
+    box.innerHTML=h+'</div>';box.hidden=false;
+  }
+  document.addEventListener('click',function(e){
+    var bt=e.target.closest('.bdladd');if(!bt||!window.ShopCart)return;
+    var b=BUNDLES.filter(function(x){return x.id===bt.dataset.b;})[0];if(!b)return;
+    /* add only what is missing for one more set */
+    var q=cartQty(),best=ShopBundles.best(q),left=Object.assign({},q);
+    best.apps.forEach(function(a){var bb=BUNDLES.filter(function(x){return x.id===a.id;})[0];for(var t=0;t<a.times;t++)bb.slots.forEach(function(sl){var pick=null;sl.forEach(function(x){if((left[x]||0)>0&&(pick===null||price(x)>price(pick)))pick=x;});if(pick)left[pick]--;});});
+    var adds=[];b.slots.forEach(function(sl){var hit=null;sl.forEach(function(x){if((left[x]||0)>0&&hit===null)hit=x;});if(hit)left[hit]--;else{var c=sl.filter(function(x){var p=P[x];return p&&p.active&&p.stock!==0;})[0];if(c)adds.push(c);}});
+    if(!adds.length){adds=b.slots.map(function(sl){return sl[0];});}
+    var before=ShopBundles.best(cartQty()).save;
+    adds.forEach(function(sku){var m=/^(.+):(\d+)$/.exec(sku);ShopCart.add(m[1],+m[2]);});
+    var gain=ShopBundles.best(cartQty()).save-before;
+    toast(gain>0?T('已湊成「'+b.name+'」，省下 '+money(gain)+'！','“'+b.name_en+'” complete, you save '+money(gain)+'!'):T('已加入購物車','Added to cart'));
+  });
   function load(){
-    return Promise.all([get('products?select=sku,name,price,stock,active'),get('shop_settings?select=*'),get('reward_tiers?select=amount,perks&order=amount')])
-      .then(function(r){P={};r[0].forEach(function(p){P[p.sku]=p;});S=r[1][0]||null;TIERS=r[2]||[];ready=true;mark();if(window.ShopCart)ShopCart.refresh();})
+    return Promise.all([get('products?select=sku,name,price,stock,active'),get('shop_settings?select=*'),get('reward_tiers?select=amount,perks&order=amount'),get('bundles?select=id,emoji,name,name_en,price,slots&active=eq.true&order=sort').catch(function(){return [];})])
+      .then(function(r){P={};r[0].forEach(function(p){P[p.sku]=p;});S=r[1][0]||null;TIERS=r[2]||[];BUNDLES=(r[3]||[]).filter(function(b){return Array.isArray(b.slots)&&b.slots.length;});ready=true;mark();if(window.ShopCart)ShopCart.refresh();renderBundles();})
       .catch(function(){ready=false;});
   }
   load();
-  new MutationObserver(function(){if(ready)mark();if(dlg.open)renderForm(true);renderLookup();}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+  new MutationObserver(function(){if(ready){mark();renderBundles();}if(dlg.open)renderForm(true);renderLookup();}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
 
   /* ---------- checkout dialog ---------- */
   var dlg=document.createElement('dialog');dlg.className='codlg';dlg.id='coDlg';dlg.setAttribute('aria-labelledby','coT');
   document.body.appendChild(dlg);
   var saved={};try{saved=JSON.parse(localStorage.getItem('shinepal_buyer')||'{}')||{};}catch(_){}
   function lines(){return window.ShopCart?ShopCart.lines().map(function(l){var p=P[l.sku];return {sku:l.sku,qty:l.qty,name:p?p.name:l.name,price:p?p.price:l.price};}):[];}
-  function calc(ls){var sub=0;ls.forEach(function(l){sub+=l.price*l.qty;});var ship=S?((S.free_shipping_over&&sub>=S.free_shipping_over)?0:S.shipping_fee):0;
-    var tier=null;TIERS.forEach(function(t){if(sub>=t.amount)tier=t;});return {sub:sub,ship:ship,total:sub+ship,tier:tier};}
+  function calc(ls){var sub=0,q={};ls.forEach(function(l){sub+=l.price*l.qty;q[l.sku]=(q[l.sku]||0)+l.qty;});var bb=ShopBundles.best(q),disc=Math.min(bb.save,sub),net=sub-disc;
+    var ship=S?((S.free_shipping_over&&net>=S.free_shipping_over)?0:S.shipping_fee):0;
+    var tier=null;TIERS.forEach(function(t){if(net>=t.amount)tier=t;});return {sub:sub,disc:disc,apps:bb.apps,net:net,ship:ship,total:net+ship,tier:tier};}
   function field(id,label,attrs,val,hint){return '<label class="cof"><span>'+label+'</span><input id="'+id+'" '+attrs+' value="'+esc(val||'')+'">'+(hint?'<small>'+hint+'</small>':'')+'</label>';}
   function keep(){var o={};['coName','coPhone','coEmail','coZip','coAddr','coSizes','coChoice','coNote'].forEach(function(k){var e=document.getElementById(k);if(e)o[k]=e.value;});var a=document.getElementById('coAgree');if(a)o.coAgree=a.checked;return o;}
   function renderForm(preserve){
@@ -2838,9 +2938,9 @@ function openFull(){sfx('open');dock.classList.add('full');dock.hidden=false;doc
     h+='<ul class="colines">';ls.forEach(function(l){var p=P[l.sku],warn='';
       if(p&&!p.active)warn=T('僅現場販售，請先移除','Events only, please remove');else if(p&&p.stock!=null&&p.stock<l.qty)warn=p.stock?T('庫存只剩 '+p.stock+' 件','Only '+p.stock+' left'):T('已售完，請先移除','Sold out, please remove');
       h+='<li><span>'+esc(l.name)+' × '+l.qty+(warn?'<em class="cowarn">'+warn+'</em>':'')+'</span><b>'+money(l.price*l.qty)+'</b></li>';});
-    h+='</ul><dl class="cototal"><dt>'+T('商品金額','Items')+'</dt><dd>'+money(c.sub)+'</dd><dt>'+T('宅配運費','Shipping')+'</dt><dd>'+(c.ship?money(c.ship):T('免運','Free'))+'</dd><dt class="cot">'+T('應付金額','Total')+'</dt><dd class="cot">'+money(c.total)+'</dd></dl>';
-    var nt=null;for(var i=0;i<TIERS.length;i++){if(c.sub<TIERS[i].amount){nt=TIERS[i];break;}}
-    h+='<p class="cotier">🎁 '+(c.tier?T('已達 '+money(c.tier.amount)+' 回饋級距：','Reached the '+money(c.tier.amount)+' tier: ')+esc(c.tier.perks):T('尚未達到回饋級距','No perk tier reached yet'))+(nt?'<br><small>'+T('再買 '+money(nt.amount-c.sub)+' 可達 '+money(nt.amount)+' 級距','Spend '+money(nt.amount-c.sub)+' more for the '+money(nt.amount)+' tier')+'</small>':'')+'</p>';
+    h+='</ul><dl class="cototal"><dt>'+T('商品金額','Items')+'</dt><dd>'+money(c.sub)+'</dd>'+(c.disc?'<dt class="codisc">'+T('組合優惠','Bundle deals')+'</dt><dd class="codisc">−'+money(c.disc)+'</dd>'+c.apps.map(function(a){return '<dt class="coapp">'+esc(ShopBundles.label(a.id))+(a.times>1?' ×'+a.times:'')+'</dt><dd class="coapp">−'+money(a.save)+'</dd>';}).join(''):'')+'<dt>'+T('宅配運費','Shipping')+'</dt><dd>'+(c.ship?money(c.ship):T('免運','Free'))+'</dd><dt class="cot">'+T('應付金額','Total')+'</dt><dd class="cot">'+money(c.total)+'</dd></dl>';
+    var nt=null;for(var i=0;i<TIERS.length;i++){if(c.net<TIERS[i].amount){nt=TIERS[i];break;}}
+    h+='<p class="cotier">🎁 '+(c.tier?T('已達 '+money(c.tier.amount)+' 回饋級距：','Reached the '+money(c.tier.amount)+' tier: ')+esc(c.tier.perks):T('尚未達到回饋級距','No perk tier reached yet'))+(nt?'<br><small>'+T('再買 '+money(nt.amount-c.net)+' 可達 '+money(nt.amount)+' 級距','Spend '+money(nt.amount-c.net)+' more for the '+money(nt.amount)+' tier')+'</small>':'')+'</p>';
     h+='<p class="copay">💳 '+T('付款方式：銀行轉帳。送出訂單後會顯示匯款帳號，請在期限內完成匯款，並回報帳號末五碼。','Payment: bank transfer. The account is shown after you place the order; please transfer before the deadline and report the last 5 digits of your account.')+'</p>';
     h+='</div></div>';
     h+='<label class="coagree"><input type="checkbox" id="coAgree"'+(v.coAgree?' checked':'')+'> <span>'+T('我同意享尼尼泊爾國際志工團蒐集以上資料，僅用於本次訂單的聯絡、出貨與回饋品寄送，不會另作他用。','I agree that ShiNepal collects the details above only to contact me, ship this order and send the gift, and for no other purpose.')+'</span></label>';
@@ -2886,6 +2986,7 @@ function openFull(){sfx('open');dock.classList.add('full');dock.hidden=false;doc
     h+='<p class="cono">'+T('訂單編號','Order no.')+' <b>'+esc(o.order_no)+'</b> <button type="button" class="cocopy" data-copy="'+esc(o.order_no)+'">'+T('複製','Copy')+'</button></p>';
     h+='<ol class="costeps"><li>'+T('請在期限內匯款到下方帳戶：','Transfer the amount to the account below before the deadline:')+'</li></ol>'+bankBox(o.bank,o.total,o.pay_by);
     h+='<ol class="costeps" start="2"><li>'+T('匯款後到「其他 → 訂單查詢」，輸入訂單編號和手機，回報你的帳號末五碼。','After transferring, go to “More → Order lookup”, enter your order no. and phone, and report the last 5 digits of your account.')+'</li><li>'+T('團隊確認收款後就會出貨，出貨進度也能在訂單查詢看到。','We ship once payment is confirmed; you can follow the progress in Order lookup.')+'</li></ol>';
+    if(o.discount)h+='<p class="cotier">🏷️ '+T('組合優惠幫你省下 ','Bundle deals saved you ')+money(o.discount)+'</p>';
     if(o.reward_amount)h+='<p class="cotier">🎁 '+T('本筆訂單達到 '+money(o.reward_amount)+' 回饋級距：','This order reached the '+money(o.reward_amount)+' tier: ')+esc(o.reward_perks)+'</p>';
     h+='<div class="coact"><a class="cobtn2" href="#order" data-x>'+T('前往訂單查詢','Go to order lookup')+'</a><button type="button" class="cobtn" data-x>'+T('完成','Done')+'</button></div></div>';
     dlg.innerHTML=h;
@@ -2915,7 +3016,7 @@ function openFull(){sfx('open');dock.classList.add('full');dock.hidden=false;doc
     var h='<article class="olcard"><div class="olhead"><b>'+esc(o.order_no)+'</b><span class="olst'+(cancel?' x':'')+'">'+esc(stName(o.status))+'</span></div><p class="olmeta">'+T('下單時間：','Ordered: ')+fmtTime(o.created_at)+'</p>';
     if(!cancel){h+='<ol class="olflow">';FLOW.forEach(function(s,i){h+='<li class="'+(i<=idx?'on':'')+'">'+esc(stName(s))+'</li>';});h+='</ol>';}
     h+='<ul class="colines">';(o.items||[]).forEach(function(l){h+='<li><span>'+esc(l.name)+' × '+l.qty+'</span><b>'+money(l.price*l.qty)+'</b></li>';});h+='</ul>';
-    h+='<dl class="cototal"><dt>'+T('商品金額','Items')+'</dt><dd>'+money(o.subtotal)+'</dd><dt>'+T('運費','Shipping')+'</dt><dd>'+(o.shipping?money(o.shipping):T('免運','Free'))+'</dd><dt class="cot">'+T('總金額','Total')+'</dt><dd class="cot">'+money(o.total)+'</dd></dl>';
+    h+='<dl class="cototal"><dt>'+T('商品金額','Items')+'</dt><dd>'+money(o.subtotal)+'</dd>'+(o.discount?'<dt class="codisc">'+T('組合優惠','Bundle deals')+'</dt><dd class="codisc">−'+money(o.discount)+'</dd>'+(o.bundles||[]).map(function(a){return '<dt class="coapp">'+esc(ShopBundles.label(a.id))+(a.times>1?' ×'+a.times:'')+'</dt><dd class="coapp">−'+money(a.save)+'</dd>';}).join(''):'')+'<dt>'+T('運費','Shipping')+'</dt><dd>'+(o.shipping?money(o.shipping):T('免運','Free'))+'</dd><dt class="cot">'+T('總金額','Total')+'</dt><dd class="cot">'+money(o.total)+'</dd></dl>';
     if(o.sizes)h+='<p class="olmeta">'+T('T恤尺寸：','T-shirt sizes: ')+esc(o.sizes)+'</p>';
     if(o.reward_amount)h+='<p class="cotier">🎁 '+esc(o.reward_perks)+(o.reward_choice?'<br><small>'+T('你的選擇：','Your choice: ')+esc(o.reward_choice)+'</small>':'')+'</p>';
     if(o.status==='待付款'||o.status==='已回報匯款'){

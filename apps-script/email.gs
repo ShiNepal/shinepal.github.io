@@ -85,6 +85,7 @@ function order_(o) {
   let x = '<table style="width:100%;border-collapse:collapse;font-size:14px">' +
     '<tr><td colspan="2" style="padding:4px 0"><b>訂單編號 ' + h_(o.order_no) + '</b></td></tr>' + rows +
     '<tr><td style="border-top:1px dashed #cbb;padding:6px 0 2px">商品金額</td><td style="border-top:1px dashed #cbb;padding:6px 0 2px;text-align:right">' + money_(o.subtotal) + '</td></tr>' +
+    (o.discount ? '<tr><td style="color:#2F7A3A">組合優惠</td><td style="text-align:right;color:#2F7A3A">−' + money_(o.discount) + '</td></tr>' : '') +
     '<tr><td>運費</td><td style="text-align:right">' + (o.shipping ? money_(o.shipping) : '免運') + '</td></tr>' +
     '<tr><td><b>總金額</b></td><td style="text-align:right"><b>' + money_(o.total) + '</b></td></tr></table>';
   if (o.sizes) x += '<p>T恤尺寸：' + h_(o.sizes) + '</p>';
