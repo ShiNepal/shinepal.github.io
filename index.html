@@ -385,8 +385,14 @@ h3{font-size:20px;font-weight:700;line-height:1.4}
 #panShop .sitem .sn{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;flex:1 1 auto;min-width:0}
 #panShop .sitem .sn:has(.shbadges)>.ic{grid-row:1 / span 2;align-self:center}
 #panShop .sitem .sn:has(.shbadges)>span[data-i18n]{align-self:end}
-.sitem .sn>span:not(.shbadges){white-space:nowrap}
-.sitem .sp{flex:0 0 auto}
+/* never overlap: the name wraps, and prices drop to their own line when space runs out */
+#panShop .sitem{flex-wrap:wrap;row-gap:4px}
+#panShop .sitem .sn{flex:1 1 8em;min-width:0}
+#panShop .sitem .sn>span[data-i18n]{overflow-wrap:anywhere;line-height:1.35;min-width:0}
+#panShop .sitem .sp{flex:0 1 auto;margin-left:auto;min-width:0;max-width:100%}
+#panShop .shbadge{white-space:normal}
+#panShop .sv{white-space:normal}
+#panShop .sv b{white-space:nowrap}
 .shbadge{display:inline-block;white-space:nowrap;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:900;background:#2B2420;color:#FFF9EC;vertical-align:middle}
 .sv.soldout b,.sv.offline b{text-decoration:line-through;opacity:.55}
 .shbadge.x{background:#B3261E}
@@ -450,6 +456,9 @@ h3{font-size:20px;font-weight:700;line-height:1.4}
 .olpay label{display:grid;gap:4px;font-weight:700;font-size:14px}
 .olpay input{font:inherit;padding:9px 11px;border-radius:10px;border:2px solid var(--line);background:var(--wall);color:var(--ink);max-width:180px;letter-spacing:.2em}
 .olpay .evbtn{justify-self:start;margin-top:0;cursor:pointer}
+/* zoom-safe header: the title never squeezes into one character per line; controls wrap to a new line instead */
+.top-in{flex-wrap:wrap;row-gap:6px}
+.brand-sub{white-space:nowrap}
 /* ===== 組合優惠 ===== */
 .bdl{margin:22px 0 26px}
 .bdlhead h3{margin:0 0 4px;font-size:20px;font-weight:900}
