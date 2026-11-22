@@ -2305,7 +2305,7 @@ h1.fancy .ch:hover{animation:chJump .45s ease}
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduce||!('IntersectionObserver' in window)) return;
   t.classList.add('pre');
-  new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){t.classList.remove('pre');t.classList.add('play');o.disconnect();if(window.SFX)SFX.ambient('warm');}});},{threshold:.35}).observe(t);
+  new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){t.classList.remove('pre');t.classList.add('play');o.disconnect();if(window.SFX)SFX.ambient('warm');}});},{threshold:0,rootMargin:'0px 0px -15% 0px'}).observe(t.querySelector('h2')||t);
 })();
 </script>
 <script>
