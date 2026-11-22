@@ -391,6 +391,14 @@ h3{font-size:20px;font-weight:700;line-height:1.4}
 #panShop .sitem .sn>span[data-i18n]{overflow-wrap:anywhere;line-height:1.35;min-width:0}
 #panShop .sitem .sp{flex:0 1 auto;margin-left:auto;min-width:0;max-width:100%}
 #panShop .shbadge{white-space:normal}
+/* icons: perfectly centred, white disc with a yellow ring so every item stands out */
+#panShop .sitem .ic{padding:0;width:38px;height:38px;font-size:21px;line-height:1;background:#FFFFFF;box-shadow:0 0 0 2.5px var(--yellow,#FFD54A),0 2px 6px rgba(43,36,32,.25);text-align:center;margin-right:12px}
+#panShop .sitem .ic .icimg{width:28px;height:28px;object-fit:contain;margin:auto}
+#panShop .sitem .ic.fav{background:#FFE3E0}
+#panShop .sitem-off .ic{filter:grayscale(1);opacity:.6}
+.scat h3 .ic{padding:0}
+/* prices that drop to a second line start under the first character of the name */
+#panShop .sitem.wrapped .sp{margin-left:0;justify-content:flex-start;flex-basis:100%;padding-left:var(--namex,50px)}
 #panShop .sv{white-space:normal}
 #panShop .sv b{white-space:nowrap}
 .shbadge{display:inline-block;white-space:nowrap;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:900;background:#2B2420;color:#FFF9EC;vertical-align:middle}
@@ -3051,4 +3059,22 @@ function openFull(){sfx('open');dock.classList.add('full');dock.hidden=false;doc
 })();
 </script>
 
+<script>
+(function(){
+  function fit(){document.querySelectorAll('#panShop .sitem').forEach(function(li){
+    var sn=li.querySelector('.sn'),sp=li.querySelector('.sp'),nm=li.querySelector('.sn>span[data-i18n]');if(!sn||!sp||!nm)return;
+    li.classList.remove('wrapped');
+    if(sp.getBoundingClientRect().top>=sn.getBoundingClientRect().bottom-2){
+      var lr=li.getBoundingClientRect(),z=li.offsetWidth?lr.width/li.offsetWidth:1;li.style.setProperty('--namex',((nm.getBoundingClientRect().left-lr.left)/(z||1))+'px');li.classList.add('wrapped');}
+  });}
+  var t;function later(){clearTimeout(t);t=setTimeout(fit,60);}
+  window.addEventListener('resize',later);window.addEventListener('load',fit);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
+  var shop=document.getElementById('panShop');
+  if(shop)new MutationObserver(later).observe(shop,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['hidden','lang']});
+  new MutationObserver(later).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+  if(window.ResizeObserver&&shop)new ResizeObserver(later).observe(shop);
+  fit();
+})();
+</script>
 </body></html>
