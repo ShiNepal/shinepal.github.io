@@ -379,8 +379,14 @@ h3{font-size:20px;font-weight:700;line-height:1.4}
 .bdhead time{font-size:12px;color:var(--ink-2)}
 .bdcard p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
 /* ===== 義賣系統 ===== */
-.shbadges{display:flex;flex-wrap:wrap;gap:3px;margin-top:2px;flex-basis:100%;padding-left:var(--shpad,44px)}
-.sitem .sn{flex-wrap:wrap;min-width:7.5em}
+#panShop .shbadges{display:flex;flex-wrap:wrap;gap:3px;margin-top:3px;grid-column:2;grid-row:2;align-self:start}
+/* item row: icon + name on one line, badges under the name, prices on the right */
+.sitem{align-items:center}
+#panShop .sitem .sn{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;flex:1 1 auto;min-width:0}
+#panShop .sitem .sn:has(.shbadges)>.ic{grid-row:1 / span 2;align-self:center}
+#panShop .sitem .sn:has(.shbadges)>span[data-i18n]{align-self:end}
+.sitem .sn>span:not(.shbadges){white-space:nowrap}
+.sitem .sp{flex:0 0 auto}
 .shbadge{display:inline-block;white-space:nowrap;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:900;background:#2B2420;color:#FFF9EC;vertical-align:middle}
 .sv.soldout b,.sv.offline b{text-decoration:line-through;opacity:.55}
 .shbadge.x{background:#B3261E}
