@@ -471,6 +471,9 @@ h3{font-size:20px;font-weight:700;line-height:1.4}
 .p3:active{cursor:grabbing}
 .p3obj{position:relative;transform-style:preserve-3d;will-change:transform}
 .p3f{position:absolute;inset:0;background-size:100% 100%;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:2px}
+.p3strip{position:absolute;top:0;transform-style:preserve-3d}
+.p3strip .p3f{border-radius:0;background-repeat:no-repeat}
+.p3shade{position:absolute;inset:0;background:#1d140e;opacity:0;pointer-events:none}
 .p3edge{position:absolute;backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .p3shadow{position:absolute;left:12%;right:12%;bottom:5%;height:7%;border-radius:50%;background:radial-gradient(closest-side,rgba(43,36,32,.35),transparent);pointer-events:none}
 .awards{margin:18px 0 8px}
@@ -1357,7 +1360,7 @@ h1.fancy .ch:hover{animation:chJump .45s ease}
       </article>
       <article class="pdp pdx" id="p-scarf" aria-labelledby="scxTitle" hidden data-sku="si_acc1:0">
         <div class="pdview">
-          <div class="pdstage" data-f="p/sc_flat.webp" data-b="p/sc_flat.webp" data-w="1200" data-h="835" data-t="0" data-edge="" data-mir="1"><img class="pdximg" src="p/sc_flat.webp" alt="" loading="lazy"></div>
+          <div class="pdstage" data-f="p/sc_flat.webp" data-b="p/sc_flat.webp" data-w="1200" data-h="835" data-t="0" data-edge="" data-mir="1" data-cloth="1"><img class="pdximg" src="p/sc_flat.webp" alt="" loading="lazy"></div>
           <div class="pdtabs" role="tablist"><button type="button" role="tab" aria-selected="true" data-src="p/sc_flat.webp" data-alt="scxA0"><img src="p/sc_flat_t.webp" alt=""><span data-i18n="scxT0">平鋪</span></button><button type="button" role="tab" aria-selected="false" data-src="p/sc_detail.webp" data-alt="scxA1"><img src="p/sc_detail_t.webp" alt=""><span data-i18n="scxT1">流蘇細節</span></button><button type="button" role="tab" aria-selected="false" data-src="p/sc_label.webp" data-alt="scxA2"><img src="p/sc_label_t.webp" alt=""><span data-i18n="scxT2">標籤</span></button><button type="button" role="tab" aria-selected="false" data-3d><b aria-hidden="true">3D</b><span data-i18n="pdTab3">3D 立體</span></button></div>
           <p class="pdhint p3hint" hidden><span data-i18n="pdHint3">拖曳旋轉，也可以開啟自動旋轉</span> <button type="button" class="pdauto p3auto" aria-pressed="true" data-i18n="pdAuto">自動旋轉</button></p>
           <p class="pdnote p3note" hidden data-i18n="pdNote3dx">立體效果由實拍照片即時生成，為示意預覽，實際以實品為準。</p>
@@ -3226,11 +3229,34 @@ function openFull(){sfx('open');dock.classList.add('full');dock.hidden=false;doc
     var s={card:card,box:box,o:o,w:w,h:h,t:t,edge:d.edge,ry:-0.5,rx:-0.12,vy:0,vx:0,spin:!reduce,drag:null,raf:0,last:0};
     function face(src,back){var f=document.createElement('div');f.className='p3f';f.style.backgroundImage='url("'+src+'")';
       f.style.transform=(back?'rotateY(180deg) ':'')+'translateZ(var(--hz))'+(back&&mir?' scaleX(-1)':'');o.appendChild(f);}
-    face(d.f,false);face(d.b,true);
+    var cloth=d.cloth==='1',N=28,strips=[];
+    if(cloth){for(var i=0;i<N;i++){var g=document.createElement('div');g.className='p3strip';
+        var fa=document.createElement('div');fa.className='p3f';fa.style.backgroundImage='url("'+d.f+'")';
+        var fb=document.createElement('div');fb.className='p3f';fb.style.backgroundImage='url("'+d.b+'")';fb.style.transform='rotateY(180deg)'+(mir?' scaleX(-1)':'');
+        var sh=document.createElement('div');sh.className='p3shade';
+        g.appendChild(fa);g.appendChild(fb);fa.appendChild(sh);o.appendChild(g);strips.push({g:g,fa:fa,fb:fb,sh:sh,i:i});}}
+    else{face(d.f,false);face(d.b,true);}
+    s.cloth=cloth;s.ph=0;
+    function drape(W,H){if(!cloth)return;var w=W/N,A=Math.min(W,H)*0.13,k=1.35;
+      /* march along the wave so strips stay joined: each strip is placed where the previous one ended */
+      var pts=[],x=-W/2,z=0,ang=0;
+      strips.forEach(function(p,i){var u=(i+.5)/N;var slope=(A*k*2*Math.PI/W*Math.cos(k*2*Math.PI*u+s.ph)+A*0.35*3.1*2*Math.PI/W*Math.cos(3.1*2*Math.PI*u-s.ph*1.7))*(0.45+0.55*u);ang=Math.atan(slope);pts.push(ang);});
+      var tot=0;pts.forEach(function(a){tot+=w*Math.cos(a);});var sc=W/tot;x=-W/2;z=0;
+      strips.forEach(function(p,i){var a=pts[i],cw=w*sc,dx=cw*Math.cos(a),dz=cw*Math.sin(a);
+        var cx=x+dx/2,cz=z-dz/2;x+=dx;z-=dz;
+        p.g.style.width=(cw+0.8)+'px';p.g.style.height=H+'px';p.g.style.left=(W/2-cw/2)+'px';
+        p.g.style.transform='translateX('+cx+'px) translateZ('+cz+'px) rotateY('+(a*180/Math.PI)+'deg)';
+        var bp=(-i*w)+'px 0';p.fa.style.backgroundSize=W+'px '+H+'px';p.fb.style.backgroundSize=W+'px '+H+'px';
+        p.fa.style.backgroundPosition=bp;p.fb.style.backgroundPosition=(mir?bp:(-(N-1-i)*w)+'px 0');
+        p.sh.style.opacity=Math.min(.5,Math.max(0,(-Math.sin(a+0.5))*0.55));});
+      /* recentre depth so rotation pivots through the cloth */
+      var zc=z/2;strips.forEach(function(p){p.g.style.transform=p.g.style.transform.replace(/translateZ\(([-\d.e]+)px\)/,function(m,v){return 'translateZ('+(+v-zc)+'px)';});});
+    }
+    s.drape=drape;
     if(t>0){['l','r','tp','bt'].forEach(function(k){var e=document.createElement('div');e.className='p3edge';e.dataset.k=k;e.style.background=d.edge;o.appendChild(e);});}
     function size(){
       var bw=box.clientWidth*.84,bh=box.clientHeight*.8,sc=Math.min(bw/w,bh/h),W=w*sc,H=h*sc,T=Math.max(1,Math.min(W,H)*t);
-      o.style.width=W+'px';o.style.height=H+'px';o.style.setProperty('--hz',(T/2)+'px');
+      o.style.width=W+'px';o.style.height=H+'px';o.style.setProperty('--hz',(T/2)+'px');s.W=W;s.H=H;if(cloth)drape(W,H);
       o.querySelectorAll('.p3edge').forEach(function(e){var k=e.dataset.k;
         if(k==='l'||k==='r'){e.style.width=T+'px';e.style.height=H+'px';e.style.left=(W/2-T/2)+'px';e.style.top='0';e.style.transform='rotateY('+(k==='l'?-90:90)+'deg) translateZ('+(W/2)+'px)';}
         else{e.style.width=W+'px';e.style.height=T+'px';e.style.left='0';e.style.top=(H/2-T/2)+'px';e.style.transform='rotateX('+(k==='tp'?90:-90)+'deg) translateZ('+(H/2)+'px)';}});
@@ -3241,18 +3267,20 @@ function openFull(){sfx('open');dock.classList.add('full');dock.hidden=false;doc
     function tick(now){
       var dt=Math.min(.05,(now-(s.last||now))/1000);s.last=now;
       if(!s.drag){
-        if(s.spin){s.vy+=(0.7-s.vy)*Math.min(1,dt*1.5);}else{s.vy*=Math.pow(.25,dt);}
+        if(s.cloth&&s.spin){s.tt=(s.tt||0)+dt;var tg=0.55*Math.sin(s.tt*0.45)-0.25;s.vy+=((tg-s.ry)*1.6-s.vy)*Math.min(1,dt*2);}
+        else if(s.spin){s.vy+=(0.7-s.vy)*Math.min(1,dt*1.5);}else{s.vy*=Math.pow(.25,dt);}
         s.ry+=s.vy*dt;
         s.vx+=(-0.12-s.rx)*dt*3; s.vx*=Math.pow(.2,dt); s.rx+=s.vx*dt;
       }
+      if(s.cloth&&!reduce){s.ph+=dt*1.3;s.drape(s.W,s.H);}
       paint();
-      if(!box.hidden&&(s.drag||s.spin||Math.abs(s.vy)>.01||Math.abs(s.vx)>.01||Math.abs(s.rx+.12)>.005))s.raf=requestAnimationFrame(tick);else{s.raf=0;s.last=0;}
+      if(!box.hidden&&(s.cloth&&!reduce||s.drag||s.spin||Math.abs(s.vy)>.01||Math.abs(s.vx)>.01||Math.abs(s.rx+.12)>.005))s.raf=requestAnimationFrame(tick);else{s.raf=0;s.last=0;}
     }
     s.wake=function(){if(!s.raf){s.last=0;s.raf=requestAnimationFrame(tick);}};
     box.addEventListener('pointerdown',function(e){box.setPointerCapture(e.pointerId);s.drag={x:e.clientX,y:e.clientY,t:performance.now()};s.vy=0;s.vx=0;s.wake();});
     box.addEventListener('pointermove',function(e){if(!s.drag)return;var dx=e.clientX-s.drag.x,dy=e.clientY-s.drag.y,now=performance.now(),dt=Math.max(1,now-s.drag.t)/1000;
       s.ry+=dx*.011;s.rx=Math.max(-0.9,Math.min(0.9,s.rx-dy*.008));s.vy=.6*s.vy+.4*dx*.011/dt;s.vx=.6*s.vx+.4*(-dy*.008)/dt;s.drag={x:e.clientX,y:e.clientY,t:now};paint();});
-    function up(){if(!s.drag)return;s.drag=null;s.vy=Math.max(-12,Math.min(12,s.vy));s.wake();}
+    function up(){if(!s.drag)return;s.drag=null;if(s.cloth){s.ry=Math.atan2(Math.sin(s.ry),Math.cos(s.ry));}s.vy=Math.max(-12,Math.min(12,s.vy));s.wake();}
     box.addEventListener('pointerup',up);box.addEventListener('pointercancel',up);
     var ab=card.querySelector('.p3auto');ab.setAttribute('aria-pressed',s.spin?'true':'false');
     ab.addEventListener('click',function(){s.spin=!s.spin;ab.setAttribute('aria-pressed',s.spin?'true':'false');s.wake();});
